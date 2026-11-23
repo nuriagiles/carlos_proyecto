@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Cyber Flap - Juego Web</title>
+    <link rel="stylesheet" href="src/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <!-- PANTALLA DE LOGIN -->
+      <section id="login-screen" class="card center-box">
+        <div class="logo-badge">🐤 CYBER FLAP</div>
+        <h1>Vuela y supera tu récord</h1>
+        <p class="subtitle">
+          Inicia sesión con tu cuenta de Google para jugar, guardar tus partidas y registrar tu mejor puntuación.
+        </p>
+        <button id="btn-login" class="btn btn-google">
+          Continuar con Google
+        </button>
+      </section>
+
+      <!-- PANTALLA PRINCIPAL DEL JUEGO -->
+      <section id="game-screen" class="hidden">
+        <!-- Cabecera / Perfil del Jugador -->
+        <header class="topbar card">
+          <div class="user-profile">
+            <img id="user-avatar" src="" alt="Avatar" class="avatar" />
+            <div>
+              <h2 id="user-name">Jugador</h2>
+              <p id="user-email" class="muted"></p>
+            </div>
+          </div>
+
+          <div class="profile-stats">
+            <div class="stat-pill">
+              <span class="stat-label">Mejor Puntaje</span>
+              <strong id="best-score" class="highlight">0</strong>
+            </div>
+            <div class="stat-pill">
+              <span class="stat-label">Partidas</span>
+              <strong id="total-games">0</strong>
+            </div>
+            <button id="btn-logout" class="btn btn-outline">Cerrar sesión</button>
+          </div>
+        </header>
+
+        <!-- Zona del Juego + Historial -->
+        <main class="main-grid">
+          <div class="game-container card">
+            <div class="game-hud">
+              <span>Puntos: <strong id="current-score">0</strong></span>
+              <span class="hint">Espacio / Clic / Tocar para saltar</span>
+            </div>
+
+            <div class="canvas-wrapper">
+              <canvas id="flappy-canvas" width="400" height="560"></canvas>
+
+              <!-- Overlay Inicio / Game Over -->
+              <div id="game-overlay" class="overlay">
+                <h3 id="overlay-title">¿Listo para volar?</h3>
+                <p id="overlay-desc">Pulsa el botón, la barra espaciadora o toca la pantalla.</p>
+                <div id="overlay-summary" class="summary-box hidden"></div>
+                <button id="btn-start" class="btn btn-primary">Jugar ahora</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Historial de Partidas en Supabase -->
+          <aside class="history-container card">
+            <h3>Historial de Partidas</h3>
+            <p class="muted small">Tus últimos vuelos registrados en tu perfil</p>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Fecha</th>
+                    <th>Puntos</th>
+                    <th>Duración</th>
+                    <th>Estado</th>
+                  </tr>
+                </thead>
+                <tbody id="history-body">
+                  <tr>
+                    <td colspan="4" class="muted">Cargando partidas...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </aside>
+        </main>
+      </section>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
